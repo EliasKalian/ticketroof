@@ -2,12 +2,10 @@
 // Requests with "Accept: text/markdown" get the Markdown version of a page,
 // everything else gets the normal HTML from GitHub Pages.
 //
-// Routes (Workers & Pages -> this Worker -> Settings -> Domains & Routes):
-//   ticket-roof.com/
-//   ticket-roof.com/index.html
-//   ticket-roof.com/impressum.html
-//   ticket-roof.com/index.md
-//   ticket-roof.com/impressum.md
+// Route (Workers & Pages -> this Worker -> Settings -> Domains & Routes):
+//   ticket-roof.com/*
+// A wildcard is needed because exact routes like "ticket-roof.com/" do not
+// match URLs with a query string ("/?x=1"). All other paths pass through.
 
 const MARKDOWN_PAGES = {
   '/': '/index.md',
