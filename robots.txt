@@ -1,5 +1,10 @@
 # Alle Crawler dürfen alles crawlen – inkl. Suchmaschinen und KI-/LLM-Crawler
+# Content Signals (https://contentsignals.org/): Nutzung erlaubt für
+#   search    – Suchindex und Suchergebnisse mit Links
+#   ai-input  – Live-Nutzung in KI-Antworten (RAG, Grounding, Agenten)
+#   ai-train  – Training von KI-Modellen
 User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 Disallow: /cdn-cgi/
 
@@ -22,6 +27,7 @@ User-agent: meta-externalagent
 User-agent: Amazonbot
 User-agent: DuckAssistBot
 User-agent: MistralAI-User
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 Disallow: /cdn-cgi/
 
