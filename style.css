@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Inter Tight";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/assets/fonts/inter-tight-latin-wght.woff2") format("woff2");
+}
+
 :root {
   --ink: #0a0a0a;
   --ink-2: #16161a;

@@ -34,6 +34,19 @@ jobs:
           npx --yes esbuild@0.24.0 style.css --minify --outfile=_site/style.css --allow-overwrite
           npx --yes esbuild@0.24.0 main.js --minify --outfile=_site/main.js --allow-overwrite
 
+      - name: Inline CSS into HTML pages
+        run: |
+          node -e '
+            const fs = require("fs");
+            const css = fs.readFileSync("_site/style.css", "utf8").trim();
+            const link = "<link rel=\"stylesheet\" href=\"style.css\">";
+            for (const page of ["_site/index.html", "_site/impressum.html"]) {
+              const html = fs.readFileSync(page, "utf8");
+              if (!html.includes(link)) throw new Error("stylesheet link not found in " + page);
+              fs.writeFileSync(page, html.replace(link, () => "<style>" + css + "</style>"));
+            }
+          '
+
       - uses: actions/upload-pages-artifact@v3
 
       - id: deployment
