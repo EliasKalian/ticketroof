@@ -47,6 +47,18 @@ jobs:
             }
           '
 
+      - name: Version main.js URL for long-term caching
+        run: |
+          node -e '
+            const fs = require("fs");
+            const hash = require("crypto").createHash("sha256").update(fs.readFileSync("_site/main.js")).digest("hex").slice(0, 10);
+            const page = "_site/index.html";
+            const tag = "<script src=\"main.js\" defer></script>";
+            const html = fs.readFileSync(page, "utf8");
+            if (!html.includes(tag)) throw new Error("main.js script tag not found in " + page);
+            fs.writeFileSync(page, html.replace(tag, "<script src=\"main.js?v=" + hash + "\" defer></script>"));
+          '
+
       - uses: actions/upload-pages-artifact@v3
 
       - id: deployment
