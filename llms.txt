@@ -24,7 +24,7 @@ Start in vier Wochen: Woche 1 Kick-off (Vertrag, Paket, Pilotgruppe), Woche 2 Ei
 
 ## Seiten
 
-- [Startseite](https://ticket-roof.com/): Angebot, Ablauf, Programm, Pakete, FAQ und Kontakt
+- [Startseite](https://ticket-roof.com/index.md): Angebot, Ablauf, Programm, Pakete, FAQ und Kontakt
 - [FAQ](https://ticket-roof.com/#faq): Kosten, Anzahl Events, Aufwand für HR, Ticketzugang, Pilotphase
 - [Kontakt](https://ticket-roof.com/#kontakt): Angebot oder Demo anfragen
 
@@ -34,4 +34,4 @@ Start in vier Wochen: Woche 1 Kick-off (Vertrag, Paket, Pilotgruppe), Woche 2 Ei
 
 ## Optional
 
-- [Impressum](https://ticket-roof.com/impressum.html)
+- [Impressum](https://ticket-roof.com/impressum.md)

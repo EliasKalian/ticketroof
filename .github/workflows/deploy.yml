@@ -30,7 +30,7 @@ jobs:
       - name: Build site with minified CSS and JS
         run: |
           mkdir _site
-          rsync -a --exclude .git --exclude .github --exclude _site ./ _site/
+          rsync -a --exclude .git --exclude .github --exclude _site --exclude cloudflare ./ _site/
           npx --yes esbuild@0.24.0 style.css --minify --outfile=_site/style.css --allow-overwrite
           npx --yes esbuild@0.24.0 main.js --minify --outfile=_site/main.js --allow-overwrite
 
