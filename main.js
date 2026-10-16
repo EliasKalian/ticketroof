@@ -1,8 +1,19 @@
-// Header background on scroll
+// Header background on scroll: observe a 20px sentinel at the top instead of
+// reading scrollY, which would force a synchronous layout
 const header = document.getElementById('header');
-const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 20);
-onScroll();
-window.addEventListener('scroll', onScroll, { passive: true });
+if ('IntersectionObserver' in window) {
+  const sentinel = document.createElement('div');
+  sentinel.setAttribute('aria-hidden', 'true');
+  sentinel.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:21px;pointer-events:none;';
+  document.body.prepend(sentinel);
+  new IntersectionObserver(([entry]) => {
+    header.classList.toggle('is-scrolled', !entry.isIntersecting);
+  }).observe(sentinel);
+} else {
+  const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 20);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+}
 
 // Mobile navigation
 const burger = document.getElementById('burger');
