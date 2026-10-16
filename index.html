@@ -25,6 +25,119 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <!--email_off-->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://ticket-roof.com/#organization",
+        "name": "ticketroof",
+        "legalName": "New Experience GmbH (in Gründung)",
+        "url": "https://ticket-roof.com/",
+        "logo": "https://ticket-roof.com/assets/img/icon.png",
+        "email": "bernhard.strasser@ticket-roof.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Wien",
+          "addressCountry": "AT"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "sales",
+          "name": "Bernhard Strasser",
+          "email": "bernhard.strasser@ticket-roof.com",
+          "areaServed": "AT",
+          "availableLanguage": "de"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://ticket-roof.com/#website",
+        "url": "https://ticket-roof.com/",
+        "name": "ticketroof",
+        "inLanguage": "de-AT",
+        "publisher": { "@id": "https://ticket-roof.com/#organization" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://ticket-roof.com/#webpage",
+        "url": "https://ticket-roof.com/",
+        "name": "ticketroof für Unternehmen – Ganz Wien live als Mitarbeiter-Benefit",
+        "description": "ticketroof ist das Event-Abo für euer Team: Oper, Konzerte, Kabarett, Theater und Sport in Wien. Ein fixer Monatsbetrag, null Verwaltung. Jetzt Pilotpartner werden.",
+        "inLanguage": "de-AT",
+        "isPartOf": { "@id": "https://ticket-roof.com/#website" },
+        "about": { "@id": "https://ticket-roof.com/#service" },
+        "primaryImageOfPage": "https://ticket-roof.com/assets/img/wien.jpg"
+      },
+      {
+        "@type": "Service",
+        "@id": "https://ticket-roof.com/#service",
+        "name": "ticketroof Event-Abo für Unternehmen",
+        "serviceType": "Corporate Benefit",
+        "description": "Event-Abo als Mitarbeiter-Benefit: Mitarbeiter:innen besuchen Oper, Konzerte, Kabarett, Theater und Sport in Wien ohne eigenen Ticketkauf. Das Unternehmen zahlt einen fixen Monatsbetrag pro Paket, ohne Eigenanteil für das Team.",
+        "provider": { "@id": "https://ticket-roof.com/#organization" },
+        "areaServed": { "@type": "City", "name": "Wien" },
+        "audience": { "@type": "BusinessAudience", "audienceType": "Unternehmen und HR-Abteilungen" },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Pakete",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "name": "Team",
+              "description": "Bis zu 4 Events pro Monat und Person, Zugang zum gesamten Programm, Reservierung in der App, Einlass per QR-Code, eine Rechnung im Monat, anonymisiertes HR-Dashboard."
+            },
+            {
+              "@type": "Offer",
+              "name": "Unlimited",
+              "description": "Bis zu 1 Event pro Tag und Person, sonst alles aus dem Team-Paket."
+            }
+          ]
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://ticket-roof.com/#faq",
+        "isPartOf": { "@id": "https://ticket-roof.com/#webpage" },
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Was kostet ticketroof für unser Unternehmen?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Ihr zahlt einen fixen Monatsbetrag pro Paket, abhängig von der Teamgröße. Für eure Mitarbeiter:innen gibt es keinen Eigenanteil. Schreibt uns, dann bekommt ihr ein konkretes Angebot." }
+          },
+          {
+            "@type": "Question",
+            "name": "Wie viele Events können Mitarbeiter:innen besuchen?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Im Team-Paket sind bis zu 4 Events pro Monat enthalten, mit Unlimited ein Event pro Tag." }
+          },
+          {
+            "@type": "Question",
+            "name": "Wie viel Aufwand hat unsere HR-Abteilung?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Kaum welchen. Ihr verschickt einen Einladungslink oder bindet ticketroof an euer HR-Tool an. Danach kommt einmal im Monat eine Rechnung, und die Nutzung seht ihr anonymisiert im HR-Dashboard." }
+          },
+          {
+            "@type": "Question",
+            "name": "Wie kommen Mitarbeiter:innen zu ihren Tickets?",
+            "acceptedAnswer": { "@type": "Answer", "text": "In der ticketroof-App wählen sie ein Event, reservieren mit einem Tipp und kommen mit dem QR-Code hinein. Es gibt keinen Ticketkauf, keinen Ausdruck und keine Belege zum Einreichen." }
+          },
+          {
+            "@type": "Question",
+            "name": "Was passiert in der Pilotphase?",
+            "acceptedAnswer": { "@type": "Answer", "text": "In vier Wochen geht es vom Kick-off über die Einladung des Teams bis zur ersten Auswertung. Pilotpartner bekommen Sonderkonditionen." }
+          },
+          {
+            "@type": "Question",
+            "name": "Profitieren auch die Veranstalter:innen?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Ja. Für jedes eingelöste Ticket zahlen wir den Veranstalter:innen einen fixen Betrag aus, gestaffelt nach Ticketpreis." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!--/email_off-->
 </head>
 <body>
 
