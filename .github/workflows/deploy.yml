@@ -63,3 +63,18 @@ jobs:
 
       - id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Notify IndexNow (Bing, Yandex, Seznam, Naver)
+        continue-on-error: true
+        env:
+          INDEXNOW_KEY: 35d354af1d6f98e72eeca5ca80b5ec46
+        run: |
+          urls=$(grep -o '<loc>[^<]*</loc>' sitemap.xml | sed -e 's#<loc>##' -e 's#</loc>##' | jq -R . | jq -sc .)
+          payload=$(jq -nc --arg key "$INDEXNOW_KEY" --argjson urls "$urls" \
+            '{host: "ticket-roof.com", key: $key, keyLocation: "https://ticket-roof.com/\($key).txt", urlList: $urls}')
+          echo "$payload"
+          status=$(curl -sS -o response.txt -w '%{http_code}' -X POST https://api.indexnow.org/indexnow \
+            -H 'Content-Type: application/json; charset=utf-8' -d "$payload")
+          cat response.txt
+          echo "IndexNow responded with HTTP $status"
+          [ "$status" = 200 ] || [ "$status" = 202 ]
