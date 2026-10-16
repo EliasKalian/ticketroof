@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    # Redeploy on the 1st of every month so the footer date stays current
+    - cron: '0 3 1 * *'
 
 permissions:
   contents: read
@@ -44,6 +47,23 @@ jobs:
               const html = fs.readFileSync(page, "utf8");
               if (!html.includes(link)) throw new Error("stylesheet link not found in " + page);
               fs.writeFileSync(page, html.replace(link, () => "<style>" + css + "</style>"));
+            }
+          '
+
+      - name: Insert current month into footer
+        env:
+          TZ: Europe/Vienna
+        run: |
+          node -e '
+            const fs = require("fs");
+            const now = new Date();
+            const iso = now.toLocaleDateString("sv-SE").slice(0, 7);
+            const label = new Intl.DateTimeFormat("de-AT", { month: "long", year: "numeric" }).format(now);
+            for (const page of ["_site/index.html", "_site/impressum.html"]) {
+              const html = fs.readFileSync(page, "utf8");
+              const re = /<time datetime="[^"]*" data-build-date>[^<]*<\/time>/g;
+              if (!re.test(html)) throw new Error("footer date not found in " + page);
+              fs.writeFileSync(page, html.replace(re, `<time datetime="${iso}">${label}</time>`));
             }
           '
 
