@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>E-Mail-Adresse · ticketroof</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="/assets/img/icon.png">
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .legal { padding: 140px 0 100px; max-width: 760px; }
+    .legal h1 { font-size: clamp(36px, 5vw, 56px); margin-bottom: 24px; }
+  </style>
+</head>
+<body>
+<header class="header is-scrolled">
+  <div class="wrap header__inner">
+    <a href="/" class="logo" aria-label="ticketroof – zur Startseite"><img src="/assets/img/logo-white.png" alt="ticketroof" width="160" height="40"></a>
+    <a href="/" class="btn btn--light btn--sm">Zur Startseite</a>
+  </div>
+</header>
+<main class="wrap legal">
+  <h1>E-Mail-Adresse</h1>
+  <p>Schreib uns an <!--email_off--><a id="email" href="mailto:bernhard.strasser@ticket-roof.com">bernhard.strasser@ticket-roof.com</a><!--/email_off-->.</p>
+</main>
+<script>
+  // Cloudflare-kodierte Adresse aus dem Hash (#<hex>) dekodieren: erstes Byte ist der XOR-Schlüssel
+  (function () {
+    var hex = location.hash.slice(1);
+    if (!/^([0-9a-f]{2}){2,}$/i.test(hex)) return;
+    var key = parseInt(hex.substr(0, 2), 16), out = '';
+    for (var i = 2; i < hex.length; i += 2) out += String.fromCharCode(parseInt(hex.substr(i, 2), 16) ^ key);
+    try { out = decodeURIComponent(escape(out)); } catch (e) {}
+    if (!/^[^@\s]+@[^@\s]+$/.test(out)) return;
+    var a = document.getElementById('email');
+    a.href = 'mailto:' + out;
+    a.textContent = out;
+  })();
+</script>
+</body>
+</html>

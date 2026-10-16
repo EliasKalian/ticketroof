@@ -1,0 +1,37 @@
+# ticketroof
+
+> ticketroof ist ein Event-Abo als Corporate Benefit für Unternehmen in Wien. Mitarbeiter:innen besuchen Oper, Konzerte, Kabarett, Theater und Sport, ohne selbst Tickets zu kaufen. Das Unternehmen zahlt einen fixen Monatsbetrag pro Paket, die Mitarbeiter:innen zahlen nichts dazu.
+
+Anbieter ist die New Experience GmbH (in Gründung), Wien, Österreich. Die Website richtet sich an Unternehmen und HR-Abteilungen (B2B) und ist auf Deutsch.
+
+## Angebot
+
+- Programm: Oper & Klassik, Jazz & Clubs, Konzerte, Kabarett & Comedy, Theater & Tanz, Sport, jeweils in Wien
+- Ablauf: Paket wählen, Team per Einladungslink oder HR-Tool einladen, Event in der ticketroof-App reservieren, Einlass per QR-Code
+- Für Unternehmen: kein Verwaltungsaufwand, eine Rechnung pro Monat, anonymisiertes HR-Dashboard zur Nutzung
+- Für Mitarbeiter:innen: kein Ticketkauf, keine Belege, in der App sehen, welche Kolleg:innen mitgehen
+- Für Veranstalter:innen: Für jedes eingelöste Ticket zahlt ticketroof einen fixen Betrag aus, gestaffelt nach Ticketpreis
+
+## Pakete
+
+- Team: bis zu 4 Events pro Monat und Person, Zugang zum gesamten Programm
+- Unlimited: bis zu 1 Event pro Tag und Person, sonst wie Team
+- Preise: fixer Monatsbetrag, abhängig von der Teamgröße; individuelles Angebot auf Anfrage, kein Eigenanteil für Mitarbeiter:innen
+
+## Pilotprogramm 2026/27
+
+Start in vier Wochen: Woche 1 Kick-off (Vertrag, Paket, Pilotgruppe), Woche 2 Einladung des Teams, Woche 3 erste Abende, Woche 4 Auswertung und Roll-out. Pilotpartner bekommen Sonderkonditionen.
+
+## Seiten
+
+- [Startseite](https://ticket-roof.com/): Angebot, Ablauf, Programm, Pakete, FAQ und Kontakt
+- [FAQ](https://ticket-roof.com/#faq): Kosten, Anzahl Events, Aufwand für HR, Ticketzugang, Pilotphase
+- [Kontakt](https://ticket-roof.com/#kontakt): Angebot oder Demo anfragen
+
+## Kontakt
+
+- Bernhard Strasser, New Experience GmbH (i. G.): bernhard.strasser@ticket-roof.com
+
+## Optional
+
+- [Impressum](https://ticket-roof.com/impressum.html)
