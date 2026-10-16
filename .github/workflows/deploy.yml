@@ -29,55 +29,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
 
-      - name: Build site with minified CSS and JS
-        run: |
-          mkdir _site
-          rsync -a --exclude .git --exclude .github --exclude _site --exclude cloudflare ./ _site/
-          npx --yes esbuild@0.24.0 style.css --minify --outfile=_site/style.css --allow-overwrite
-          npx --yes esbuild@0.24.0 main.js --minify --outfile=_site/main.js --allow-overwrite
+      - name: Install build tools
+        run: npm ci
 
-      - name: Inline CSS into HTML pages
-        run: |
-          node -e '
-            const fs = require("fs");
-            const css = fs.readFileSync("_site/style.css", "utf8").trim();
-            const link = "<link rel=\"stylesheet\" href=\"style.css\">";
-            for (const page of ["_site/index.html", "_site/impressum.html"]) {
-              const html = fs.readFileSync(page, "utf8");
-              if (!html.includes(link)) throw new Error("stylesheet link not found in " + page);
-              fs.writeFileSync(page, html.replace(link, () => "<style>" + css + "</style>"));
-            }
-          '
-
-      - name: Insert current month into footer
-        env:
-          TZ: Europe/Vienna
-        run: |
-          node -e '
-            const fs = require("fs");
-            const now = new Date();
-            const iso = now.toLocaleDateString("sv-SE").slice(0, 7);
-            const label = new Intl.DateTimeFormat("de-AT", { month: "long", year: "numeric" }).format(now);
-            for (const page of ["_site/index.html", "_site/impressum.html"]) {
-              const html = fs.readFileSync(page, "utf8");
-              const re = /<time datetime="[^"]*" data-build-date>[^<]*<\/time>/g;
-              if (!re.test(html)) throw new Error("footer date not found in " + page);
-              fs.writeFileSync(page, html.replace(re, `<time datetime="${iso}">${label}</time>`));
-            }
-          '
-
-      - name: Version main.js URL for long-term caching
-        run: |
-          node -e '
-            const fs = require("fs");
-            const hash = require("crypto").createHash("sha256").update(fs.readFileSync("_site/main.js")).digest("hex").slice(0, 10);
-            const page = "_site/index.html";
-            const tag = "<script src=\"main.js\" defer></script>";
-            const html = fs.readFileSync(page, "utf8");
-            if (!html.includes(tag)) throw new Error("main.js script tag not found in " + page);
-            fs.writeFileSync(page, html.replace(tag, "<script src=\"main.js?v=" + hash + "\" defer></script>"));
-          '
+      - name: Build site (blog, minified CSS/JS, inline CSS, footer date, main.js hash)
+        run: npm run build
 
       - uses: actions/upload-pages-artifact@v3
 
@@ -89,7 +47,7 @@ jobs:
         env:
           INDEXNOW_KEY: 35d354af1d6f98e72eeca5ca80b5ec46
         run: |
-          urls=$(grep -o '<loc>[^<]*</loc>' sitemap.xml | sed -e 's#<loc>##' -e 's#</loc>##' | jq -R . | jq -sc .)
+          urls=$(grep -o '<loc>[^<]*</loc>' _site/sitemap.xml | sed -e 's#<loc>##' -e 's#</loc>##' | jq -R . | jq -sc .)
           payload=$(jq -nc --arg key "$INDEXNOW_KEY" --argjson urls "$urls" \
             '{host: "ticket-roof.com", key: $key, keyLocation: "https://ticket-roof.com/\($key).txt", urlList: $urls}')
           echo "$payload"

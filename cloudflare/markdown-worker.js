@@ -21,6 +21,14 @@ const CANONICAL_PAGES = {
   '/impressum.md': 'https://ticket-roof.com/impressum.html',
 };
 
+// Blog pages live at /blog/ and /blog/<slug>/, their Markdown at .../index.md
+const BLOG_PAGE = /^\/blog\/(?:[a-z0-9-]+\/)?$/;
+const BLOG_MARKDOWN = /^\/blog\/(?:[a-z0-9-]+\/)?index\.md$/;
+
+const markdownFor = (path) => MARKDOWN_PAGES[path] || (BLOG_PAGE.test(path) ? `${path}index.md` : null);
+const canonicalFor = (path) =>
+  CANONICAL_PAGES[path] || (BLOG_MARKDOWN.test(path) ? `https://ticket-roof.com${path.slice(0, -'index.md'.length)}` : null);
+
 // Quality value of a media type in an Accept header, 0 if not accepted
 function quality(accept, type) {
   let best = 0;
@@ -43,7 +51,7 @@ export default {
   async fetch(request) {
     const url = new URL(request.url);
 
-    const canonical = CANONICAL_PAGES[url.pathname];
+    const canonical = canonicalFor(url.pathname);
     if (canonical) {
       const res = await fetch(request);
       if (!res.ok) return res;
@@ -53,7 +61,7 @@ export default {
       return md;
     }
 
-    const mdPath = MARKDOWN_PAGES[url.pathname];
+    const mdPath = markdownFor(url.pathname);
     if (!mdPath || !['GET', 'HEAD'].includes(request.method)) return fetch(request);
 
     if (!wantsMarkdown(request)) {

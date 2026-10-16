@@ -1,0 +1,13 @@
+{
+  "name": "ticketroof-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "sh scripts/build.sh",
+    "preview": "sh scripts/build.sh --drafts && python3 -m http.server 8000 -d _site"
+  },
+  "devDependencies": {
+    "esbuild": "0.24.0",
+    "marked": "15.0.12"
+  }
+}
